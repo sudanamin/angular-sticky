@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-declare var $: any;
 
-import * as elementResizeDetectorMaker from 'element-resize-detector';
 
   
 
@@ -12,27 +10,19 @@ import * as elementResizeDetectorMaker from 'element-resize-detector';
 })
 export class AppComponent {
   title = 'app';
-  ngOnInit() { 
-    
-    console.log(`hi from inside commponent `); 
-  //  $("#amin").draggable();
-
-
-    let _elementResizeDetector = elementResizeDetectorMaker({
-      strategy: 'scroll'
-    });
-
-    _elementResizeDetector.listenTo(document.getElementById('amin'),function(element) {
-      var width = element.offsetWidth;
-      var height = element.offsetHeight;
-      console.log("Size: " + width + "x" + height);
-  })
-
-  _elementResizeDetector.listenTo(document.getElementById('abc'),function(element) {
-    var width = element.offsetWidth;
-    var height = element.offsetHeight;
-    console.log("Size: " + width + "x" + height);
-})
-  
-  }
+  stickies : any[] = [
+    {
+      "id": "1"
+    },
+    {
+      "id": "2"
+    },
+    {
+      "id": "3"
+    },
+    {
+      "id": "4"
+    },
+  ]
+  constructor() { }
 }

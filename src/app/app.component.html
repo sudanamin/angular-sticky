@@ -1,10 +1,21 @@
-<div id="amin">
 
-    <p contenteditable="true"> hello world form amin !! </p>
-</div>
 
-<textarea id="abc" rows="5" cols="55">
-    At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies. 
-    </textarea>
+<div id="pag">
+    <div class ="sticker"  style="background-color:#FFFF8A;top:180px;">  </div>
+    <div class ="sticker"  style="background-color:#6596F7;top:240px;">  </div>
+    <div class ="sticker"  style="background-color: #92FF8A;top:300px;">  </div>
+    <div class ="sticker"  style="background-color: #DA55C6;top:360px;">  </div>
+    <div class ="sticker"  style="background-color: #ff9634;top:420px;">  </div>
+  </div>
+
+
+   <app-sticky-component *ngFor="let sticky of stickies" 
+    [idd]="sticky.id"></app-sticky-component>
+      
     
- 
+  
+   
+
+
+
+
