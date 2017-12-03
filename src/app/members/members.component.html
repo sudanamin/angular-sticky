@@ -1,0 +1,25 @@
+
+
+<div id="pag">
+  <div class ="sticker"  style="background-color:#FFFF8A;top:180px;">  </div>
+  <div class ="sticker"  style="background-color:#6596F7;top:240px;">  </div>
+  <div class ="sticker"  style="background-color: #92FF8A;top:300px;">  </div>
+  <div class ="sticker"  style="background-color: #DA55C6;top:360px;">  </div>
+  <div class ="sticker"  style="background-color: #ff9634;top:420px;">  </div>
+</div>
+
+
+ <app-sticky-component *ngFor="let sticky of posts | async" 
+  [idd]="sticky.title"></app-sticky-component>
+    
+  <div class="form-container" id="toolbar">
+    <header [@fallIn]="state">
+      <button (click)="logout()" class="basic-btn">Logout</button>
+    </header>
+    <div id="page" [@moveInLeft]="state">
+      <h2>Hey {{ name.auth.displayName }}!</h2>
+
+      <img src="assets/images/filler.png" />
+    </div>
+    
+</div>

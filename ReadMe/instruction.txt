@@ -1,0 +1,43 @@
+1- npm install angularfire2 firebase --save
+2- in app.module.ts file add this 
+   import { AngularFireModule } from 'angularfire2';
+   import { AngularFirestoreModule } from 'angularfire2/firestore';
+
+   var firebaseConfig = {
+    apikey:"",
+    authdomain:""
+    .
+    .
+
+
+@NgModle({
+..
+ imports: [
+  BrowserModule,
+  AngularFireModule.initializeApp(firebaseConfig), 
+  AngularFirestoreModule  
+]
+    .
+};
+
+3- on app.component.ts import those
+
+   import { AngularFirestore, AngularFirestoreCollection , AngularFirestoreDocument } from 'angularfire2/firestore';
+
+
+   import { Observable } from 'rxjs/Observable';
+   import 'rxjs/add/operator/map';
+
+
+4- on constructor( private afs: Angularfirestore){}
+
+5- create interface Post{
+  title : string ;
+  content : string ;
+}
+
+6- create postCol: AngularFirestoreCollection<post>;
+          post: Observable<Post[]>;
+
+
+

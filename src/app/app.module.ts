@@ -4,10 +4,17 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { StickyComponentComponent } from './sticky-component/sticky-component.component';
 
+import { CoreModule } from './core/core.module';
 
 import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-
+//import { AngularFirestoreModule } from 'angularfire2/firestore';
+//import { AngularFireAuthModule } from 'angularfire2/auth';
+import { LoginComponent } from './login/login.component';
+import { EmailComponent } from './email/email.component';
+import { SignupComponent } from './signup/signup.component';
+import { MembersComponent } from './members/members.component';
+import { AuthGuard } from './auth.guard';
+import { routes } from './app.routes';
 
 var firebaseConfig = {
   apiKey: "AIzaSyBs3l827jDcOmniFPenLdYA9AqS2pNRPxE",
@@ -22,14 +29,20 @@ var firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    StickyComponentComponent
+    StickyComponentComponent,
+    LoginComponent,
+    EmailComponent,
+    SignupComponent,
+    MembersComponent
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule
+    
+    routes,
+    CoreModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

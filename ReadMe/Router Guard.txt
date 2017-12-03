@@ -1,0 +1,16 @@
+step 1 : ng generate guard auth
+
+step 2 : on guard.ts add this 
+
+     import { Router .. canActivate, ActivatedRoutersnapshot } from @angular/router ;
+     constructor(private auth: AuthService, private router: Router){}
+
+step 3 : canActivate{
+     if(this.auth.authenticated) { return true; }
+       else
+         {
+       console.log('access denied!');
+       this.router.navigate(['login']);
+       return false
+         }
+ 
