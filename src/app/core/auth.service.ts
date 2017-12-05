@@ -16,16 +16,31 @@ interface User {
 export class AuthService {
 
   authState: any = null;
+  user: Observable<User>;
 
+  /* constructor(private afAuth: AngularFireAuth,
+               private afs: AngularFirestore,
+               private router:Router) {
+ 
+             this.afAuth.authState.subscribe((auth) => {
+               this.authState = auth
+             });
+               }*/
+
+  //    user: Observable<User>;
   constructor(private afAuth: AngularFireAuth,
-              private afs: AngularFirestore,
-              private router:Router) {
-
-            this.afAuth.authState.subscribe((auth) => {
-              this.authState = auth
-            });
-          }
-
+    private afs: AngularFirestore,
+    private router: Router) {
+    //// Get auth data, then get firestore user document || null
+    this.user = this.afAuth.authState
+      .switchMap(user => {
+        if (user) {
+          return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
+        } else {
+          return Observable.of(null)
+        }
+      })
+  }
   // Returns true if user is logged in
   get authenticated(): boolean {
     return this.authState !== null;
@@ -74,16 +89,17 @@ export class AuthService {
     return this.socialSignIn(provider);
   }
 
-  twitterLogin(){
+  twitterLogin() {
     const provider = new firebase.auth.TwitterAuthProvider()
     return this.socialSignIn(provider);
   }
 
   private socialSignIn(provider) {
     return this.afAuth.auth.signInWithPopup(provider)
-      .then((credential) =>  {
-          this.authState = credential.user
-          this.updateUserData()
+      .then((credential) => {
+        this.authState = credential.user
+        this.updateUserData()
+        this.router.navigate(['/members']);
       })
       .catch(error => console.log(error));
   }
@@ -92,15 +108,15 @@ export class AuthService {
   //// Anonymous Auth ////
   anonymousLogin() {
     return this.afAuth.auth.signInAnonymously()
-    .then((user) => {
-      this.authState = user
-      this.updateUserData()
-    })
-    .catch(error => console.log(error));
+      .then((user) => {
+        this.authState = user
+        this.updateUserData()
+      })
+      .catch(error => console.log(error));
   }
 
   //// Email/Password Auth ////
-  emailSignUp(email:string, password:string) {
+  emailSignUp(email: string, password: string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((user) => {
         this.authState = user
@@ -109,13 +125,13 @@ export class AuthService {
       .catch(error => console.log(error));
   }
 
-  emailLogin(email:string, password:string) {
-     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
-       .then((user) => {
-         this.authState = user
-         this.updateUserData()
-       })
-       .catch(error => console.log(error));
+  emailLogin(email: string, password: string) {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+      .then((user) => {
+        this.authState = user
+        this.updateUserData()
+      })
+      .catch(error => console.log(error));
   }
 
   // Sends email allowing user to reset password
@@ -131,23 +147,23 @@ export class AuthService {
   //// Sign Out ////
   signOut(): void {
     this.afAuth.auth.signOut().then(() => {
-    this.router.navigate(['/']);
-  });
-}
+      this.router.navigate(['/']);
+    });
+  }
 
 
   //// Helpers ////
   private updateUserData() {
-  // Writes user name and email to realtime db
-  // useful if your app displays information about users or for admin features
-   /* let path = `users/${this.currentUserId}`; // Endpoint on firebase
-    let data = {
-                  email: this.authState.email,
-                  name: this.authState.displayName
-                }
-
-    this.db.object(path).update(data)
-    .catch(error => console.log(error));*/
+    // Writes user name and email to realtime db
+    // useful if your app displays information about users or for admin features
+    /* let path = `users/${this.currentUserId}`; // Endpoint on firebase
+     let data = {
+                   email: this.authState.email,
+                   name: this.authState.displayName
+                 }
+ 
+     this.db.object(path).update(data)
+     .catch(error => console.log(error));*/
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.authState.uid}`);
     const data: User = {
       uid: this.authState.uid,

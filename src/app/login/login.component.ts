@@ -3,6 +3,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 import { moveIn } from '../router.animations';
 import { AuthService } from '../core/auth.service';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-login',
@@ -13,10 +14,17 @@ import { AuthService } from '../core/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public auth: AuthService) { }
+  constructor(public auth: AuthService,private router: Router) {
+
+     
+   
+  }
   
 
   ngOnInit() {
+    if(this.auth.user ){
+      this.router.navigate(['/members']);
+    }
   }
 
 }

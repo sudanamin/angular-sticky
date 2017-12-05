@@ -9,6 +9,7 @@ import { AngularFirestore, AngularFirestoreCollection , AngularFirestoreDocument
   // import { AngularFireAuth, AuthProviders, AuthMethods } from 'angularfire2/auth';
    import { Router } from '@angular/router';
    import { moveIn, fallIn, moveInLeft } from '../router.animations';
+import { AuthService } from '../core/auth.service';
   
     interface Post{
     title : string ;
@@ -42,12 +43,12 @@ import { AngularFirestore, AngularFirestoreCollection , AngularFirestoreDocument
   posts: Observable<Post[]>;
 
 
-  constructor(private afs: AngularFirestore) {}
+  constructor(private afs: AngularFirestore, public auth: AuthService) {}
   
     ngOnInit() {
 
-      this.postCol = this.afs.collection('stickyNotes');
-      this.posts = this.postCol.valueChanges();
+   /*   this.postCol = this.afs.collection('stickyNotes');
+      this.posts = this.postCol.valueChanges();*/
   
     }
 }
