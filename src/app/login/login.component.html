@@ -1,17 +1,13 @@
-<div *ngIf="auth.user | async as user;then content else other_content">here is ignored</div>
 
-<ng-template #content>  content here...  </ng-template>
 
-<ng-template #other_content>  other content here...
 <div class="form-container">
-  <img src="assets/images/lock.svg" id="lock">
+ <!-- <img src="assets/images/lock.svg" id="lock">   -->
 
     <span class="error" *ngIf="error">{{ error }}</span>
 
-  <button (click)="auth.facebookLogin" id="fb">Login With Facebook</button><br>
+  <button (click)="auth.facebookLogin()" id="fb">Login With Facebook</button><br>
   <button (click)="auth.googleLogin()" id="google">Login With Google</button>
   <button routerLink="/login-email" id="email">Email</button>
 
   <a routerLink="/signup" routerLinkActive="active" class="alc">No account? <strong>Create one here</strong></a>
 </div>
-  </ng-template>
