@@ -43,6 +43,7 @@ var firebaseConfig = {
     CoreModule
   ],
   providers: [AuthGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [StickyComponentComponent]
 })
 export class AppModule { }

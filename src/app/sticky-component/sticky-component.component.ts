@@ -9,10 +9,12 @@ import * as elementResizeDetectorMaker from '.../../element-resize-detector';
 })
 export class StickyComponentComponent implements OnInit {
   
-
+  _ref:any;   
   @Input() idd: String;
   constructor() { }
-
+  deleteSticky(){
+    this._ref.destroy();
+  } 
   ngOnInit() { 
     
     console.log(`hi from inside commponent `); 
