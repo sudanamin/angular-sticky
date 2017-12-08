@@ -56,7 +56,7 @@ import { StickyComponentComponent } from '../sticky-component/sticky-component.c
            //     this.stickyCompo  = "<p>aaaaaaaaaaaa</p>";
            var comp = this._cfr.resolveComponentFactory(StickyComponentComponent);
            var expComponent = this.container.createComponent(comp);
-           this.appRef.attachView(expComponent.hostView);
+          // this.appRef.attachView(expComponent.hostView);
            expComponent.instance._ref = expComponent;
            this.expID+= 1;
             expComponent.instance.idd = this.expID;

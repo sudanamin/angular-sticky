@@ -15,13 +15,18 @@ export class StickyComponentComponent implements OnInit {
   constructor() {
     
     console.log(" hi form consturucntor ");
-
     
 
    }
   deleteSticky(){
+
+    console.log(" hi form consturucntor ");
     this._ref.destroy();
   } 
+
+  addDraggable(){
+    this.ngOnInit();
+  }
 
 
  // console.log(`hi from inside commponent `); 
