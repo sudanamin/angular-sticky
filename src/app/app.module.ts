@@ -7,14 +7,15 @@ import { StickyComponentComponent } from './sticky-component/sticky-component.co
 import { CoreModule } from './core/core.module';
 
 import { AngularFireModule } from 'angularfire2';
-//import { AngularFirestoreModule } from 'angularfire2/firestore';
-//import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginComponent } from './login/login.component';
 import { EmailComponent } from './email/email.component';
 import { SignupComponent } from './signup/signup.component';
 import { MembersComponent } from './members/members.component';
 import { AuthGuard } from './auth.guard';
 import { routes } from './app.routes';
+import { LoadingStickyService } from './core/loading-sticky.service';
 
 var firebaseConfig = {
   apiKey: "AIzaSyBs3l827jDcOmniFPenLdYA9AqS2pNRPxE",
@@ -37,12 +38,12 @@ var firebaseConfig = {
   ],
   imports: [
     BrowserModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+   AngularFireModule.initializeApp(firebaseConfig),
     
     routes,
     CoreModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, LoadingStickyService],
   bootstrap: [AppComponent],
   entryComponents: [StickyComponentComponent]
 })

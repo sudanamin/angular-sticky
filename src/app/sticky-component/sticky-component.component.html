@@ -1,6 +1,6 @@
 
 <!-- [style.z-index]="zIndex"  -->
-    <div class ="head"  [id]="idd" style="z-index: 1000"><div class ="spec" > 
+    <div class ="head" (mouseenter)="setDrag()" [id]="idd" style="z-index: 1000"><div class ="spec" > 
       <img onclick="addSticky(this)" src="../assets/add.png" alt="Mountain View" style="width:10px;height:10px;
       position: relative;bottom:5px;right:5px"> 
       <img  (click)="deleteSticky()" src="../assets/close b.png"  
@@ -8,6 +8,8 @@
       <div class ="sticker2"   style="background-color:#6596F7" > 
       <p class="paragraphClass"  id="parag"  contenteditable="true">Amin</p>
       </div></div>
+
+
   
 
      
