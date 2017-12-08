@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input  } from '@angular/core';
 declare var $: any;
 
 import * as elementResizeDetectorMaker from '.../../element-resize-detector';
@@ -10,42 +10,47 @@ import * as elementResizeDetectorMaker from '.../../element-resize-detector';
 export class StickyComponentComponent implements OnInit {
   
   _ref:any;   
+  zIndex : number = 100;
   @Input() idd: String;
-  constructor() { }
+  constructor() {
+    
+    console.log(" hi form consturucntor ");
+
+    
+
+   }
   deleteSticky(){
     this._ref.destroy();
   } 
-  ngOnInit() { 
+
+
+ // console.log(`hi from inside commponent `); 
+ ngOnInit ()
+ 
+ {
+ 
+  console.log(`hi from onit `+this.idd); 
+  $(".head").draggable({  stop: ( event, ui ) => {
     
-    console.log(`hi from inside commponent `); 
-    $(".head").draggable({
-      stop: function( event, ui ) {
-
-           var element = ui;
-
-
-
-          var xxx = ui.offset;
-    /*      $.ajax({
-              type: 'post',
-              url: '/updatePosition',
-              data: { elementID : elementIdIndex ,x: xxx.left , y: xxx.top },
-              dataType: 'text',
-              success: function (data) {
-                  console.log("data has been inserted");
-
-              }
-          });*/
-
-      },
-      handle: ".spec",
-      opacity: 0.5,
-      stack: "div",
-      distance: 0
-  });
+            //this.sticky = document.createElement("app-sticky-component");
+           
+            
+       //     this.stickyCompo  = "<p>aaaaaaaaaaaa</p>";
+      
+          },
+         //   revert: true,
+            opacity: 0.5,
+           
+            //    stack: ".head",
+            distance: 0,
+            // appentTo :
+        });
 
 
-    let _elementResizeDetector = elementResizeDetectorMaker({
+
+        
+     
+   let _elementResizeDetector = elementResizeDetectorMaker({
       strategy: 'scroll'
     });
 
@@ -57,5 +62,7 @@ export class StickyComponentComponent implements OnInit {
 
  console.log(this.idd);
   }
+
+ 
 }
 

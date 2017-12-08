@@ -4,6 +4,7 @@ declare var $: any;
 import { 
    
   ViewChild, 
+  ApplicationRef,
   ComponentFactoryResolver,
   ViewContainerRef } from '@angular/core';
    import { Observable } from 'rxjs/Observable';
@@ -39,9 +40,9 @@ import { StickyComponentComponent } from '../sticky-component/sticky-component.c
 
   postCol: AngularFirestoreCollection<Post>;
   posts: Observable<Post[]>;
+   expID :string= '1';
 
-
-  constructor(private _cfr: ComponentFactoryResolver,private afs: AngularFirestore, public auth: AuthService, private elementRef:ElementRef) {}
+  constructor( private appRef: ApplicationRef,private _cfr: ComponentFactoryResolver,private afs: AngularFirestore, public auth: AuthService, private elementRef:ElementRef) {}
   
     ngOnInit() {
  
@@ -55,7 +56,10 @@ import { StickyComponentComponent } from '../sticky-component/sticky-component.c
            //     this.stickyCompo  = "<p>aaaaaaaaaaaa</p>";
            var comp = this._cfr.resolveComponentFactory(StickyComponentComponent);
            var expComponent = this.container.createComponent(comp);
+           this.appRef.attachView(expComponent.hostView);
            expComponent.instance._ref = expComponent;
+           this.expID+= 1;
+            expComponent.instance.idd = this.expID;
               },
                 revert: true,
                 opacity: 0.5,
