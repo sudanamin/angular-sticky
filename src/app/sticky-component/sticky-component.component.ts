@@ -1,4 +1,5 @@
 import { Component, OnInit, Input  } from '@angular/core';
+//import { LoadingStickyService } from '../core/loading-sticky.service';
 declare var $: any;
 
 //import * as elementResizeDetectorMaker from '.../../element-resize-detector';
@@ -12,6 +13,9 @@ export class StickyComponentComponent  {
   
  /* zIndex : number = 100;
   @Input() idd: String;*/
+  _ref:any;   
+
+  onInitSet: boolean = false;
   constructor() {
     
     console.log(" hi form consturucntor ");
@@ -20,19 +24,27 @@ export class StickyComponentComponent  {
 
    }
   deleteSticky(){
-  //  this.lss.hide();
+   // this.lss.hide();
+   this._ref.destroy();
   } 
 
 
 
   setDrag(){
-    console.log("mouse over");
+    
+    if(!this.onInitSet){
+      console.log("mouse over");
     this.ngOnInit();
+    this.onInitSet = true;
+    }
   }
 
 
  // console.log(`hi from inside commponent `); 
  ngOnInit ()
+{
+ if(!this.onInitSet)
+
  
  {
  
@@ -47,8 +59,8 @@ export class StickyComponentComponent  {
           },
          //   revert: true,
             opacity: 0.5,
-           
-            //    stack: ".head",
+            handle: ".spec",
+              stack: ".head",
             distance: 0,
             // appentTo :
         });
@@ -69,7 +81,7 @@ export class StickyComponentComponent  {
 
  //console.log(this.idd);
   }
-
+}
  
 }
 

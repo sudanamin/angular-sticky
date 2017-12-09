@@ -45,7 +45,8 @@ export class LoadingStickyService {
       this.appRef,
       this.injector);
     // 6. Attach the Portal to the PortalHost.
-    this.bodyPortalHost.attach(this.loadingSpinnerPortal);
+    var s = this.bodyPortalHost.attach(this.loadingSpinnerPortal);
+    s.instance._ref = s;
   }
 
   hide() {
