@@ -27,18 +27,25 @@ export class MembersComponent {
 
 
   
-
+ 
 
   postCol: AngularFirestoreCollection<Post>;
   posts: Observable<Post[]>;
 
   constructor(private lss:LoadingStickyService, private afs: AngularFirestore, public auth: AuthService) { }
 
+
+  addSticky()
+  {
+    //this.membercomponent.createSticky();
+    console.log("hi form members");
+  }
+
   ngOnInit() {
 
   }
 
-  loadData() {
+   createSticky() {
     this.lss.reveal();
    // setTimeout(() => this.lss.hide(), 2000000);
   }
@@ -46,7 +53,7 @@ export class MembersComponent {
     $(".sticker").draggable({
       stop: (event, ui) => {
 
-        this.loadData() ;
+        this.createSticky() ;
       },
       revert: true,
       opacity: 0.5,
