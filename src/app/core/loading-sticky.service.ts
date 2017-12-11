@@ -15,6 +15,7 @@ import { StickyComponentComponent } from '../sticky-component/sticky-component.c
 
 @Injectable()
 export class LoadingStickyService {
+  _sid: string = '1';
 
   // 1. Reference to our Portal.
   //    This is the portal we'll use to attach our LoadingSpinnerComponent.
@@ -37,7 +38,7 @@ export class LoadingStickyService {
      
   }
 
-  reveal() {
+  reveal(StickyColor) {
 
     this.bodyPortalHost = new DomPortalHost(
       document.body,
@@ -47,6 +48,9 @@ export class LoadingStickyService {
     // 6. Attach the Portal to the PortalHost.
     var s = this.bodyPortalHost.attach(this.loadingSpinnerPortal);
     s.instance._ref = s;
+    this._sid += 1;
+    s.instance._id = this._sid ;
+        s.instance._StickyColor = StickyColor;
   }
 
   hide() {

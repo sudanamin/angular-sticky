@@ -19,13 +19,16 @@ import {
 //import { LoadingStickyService } from '../core/loading-sticky.service';
 declare var $: any;
 
-//import * as elementResizeDetectorMaker from '.../../element-resize-detector';
+import * as elementResizeDetectorMaker from '.../../element-resize-detector';
 //import { LoadingStickyService } from '../core/loading-sticky.service';
 @Component({
   selector: 'app-sticky-component',
   templateUrl: './sticky-component.component.html',
   styleUrls: ['./sticky-component.component.css']
-})
+})   
+ 
+
+
 export class StickyComponentComponent {
 
   /* zIndex : number = 100;
@@ -35,17 +38,24 @@ export class StickyComponentComponent {
   // 2. Reference to our Portal Host.
   //    We use DOMPortalHost as we'll be using document.body as our anchor.
   private bodyPortalHost: DomPortalHost;
-
+  _id: string;
   _ref: any;
-  amin: string ;
+  _StickyColor: string;
+  amin: string;
 
-  PLeft: string ;
-  PTop: string ;
+  PLeft: string;
+  PTop: string;
 
   onInitSet: boolean = false;
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
     private appRef: ApplicationRef,
-    private injector: Injector) { this.loadingSpinnerPortal = new ComponentPortal(StickyComponentComponent); }
+    private injector: Injector) {
+
+      setTimeout( ()=> {  this.ngOnInit(); } ,0.000000000000000000000000000000000000001);
+   
+    this.loadingSpinnerPortal = new ComponentPortal(StickyComponentComponent);
+
+  }
   deleteSticky() {
 
     // this.lss.hide();
@@ -70,11 +80,11 @@ export class StickyComponentComponent {
   }
 
 
- /* addDraggable() {
-
-    this.ngOnInit();
-
-  }*/
+  /* addDraggable() {
+ 
+     this.ngOnInit();
+ 
+   }*/
   addSticky() {
     //this.membercomponent.createSticky();
     console.log("hi form sticky compoentnt");
@@ -83,22 +93,25 @@ export class StickyComponentComponent {
   }
   setDrag() {
 
-    if (!this.onInitSet) {
+ /*   if (!this.onInitSet) {
       console.log("mouse over");
-      this.ngOnInit();
+      //  this.ngOnInit();
       this.onInitSet = true;
-    }
+    }*/
   }
 
 
   // console.log(`hi from inside commponent `); 
   ngOnInit() {
-    this.amin = "red";
+  /*  this.amin = "red";
     this.PTop = "30px";
-    this.PLeft = "40px";
+    this.PLeft = "40px";*/
     if (!this.onInitSet) {
       this.onInitSet = true;
-      console.log(`hi from onit `);
+
+      $("#"+this._id).css("background-color",this._StickyColor);
+      console.log(`hi from${this._id} onit `+this._StickyColor);
+      
       $(".head").draggable({
         stop: (event, ui) => {
 
@@ -120,15 +133,15 @@ export class StickyComponentComponent {
 
 
 
-      /* let _elementResizeDetector = elementResizeDetectorMaker({
-          strategy: 'scroll'
-        });
-    
-        _elementResizeDetector.listenTo(document.getElementsByClassName('sticker2'),function(element) {
-          var width = element.offsetWidth;
-          var height = element.offsetHeight;
-          console.log("Size: " + width + "x" + height + "element id is "+ element.id);
-      })*/
+      let _elementResizeDetector = elementResizeDetectorMaker({
+        strategy: 'scroll'
+      });
+
+      _elementResizeDetector.listenTo(document.getElementsByClassName('sticker2'), function (element) {
+        var width = element.offsetWidth;
+        var height = element.offsetHeight;
+        console.log("Size: " + width + "x" + height + "element id is " );
+      })
 
       //console.log(this.idd);
     }

@@ -24,6 +24,7 @@ interface Post {
 })
 //export class AppComponent {
 export class MembersComponent {
+  StickyColor: string;
 
 
   
@@ -41,19 +42,26 @@ export class MembersComponent {
     console.log("hi form members");
   }
 
+  setColor(event)
+  {
+    //this.membercomponent.createSticky();
+    this.StickyColor = event.target.style.backgroundColor;
+  }
+
   ngOnInit() {
 
   }
 
-   createSticky() {
-    this.lss.reveal();
+   createSticky(StickyColor:string) {
+    this.lss.reveal(StickyColor);
    // setTimeout(() => this.lss.hide(), 2000000);
   }
   ngAfterViewInit() {
     $(".sticker").draggable({
       stop: (event, ui) => {
-
-        this.createSticky() ;
+      //var StickyColor = $(this.).css("background-color");
+       console.log("hi from members mmmmmmmmmmmmmmm"+ this.StickyColor);
+       this.createSticky(this.StickyColor) ;
       },
       revert: true,
       opacity: 0.5,
