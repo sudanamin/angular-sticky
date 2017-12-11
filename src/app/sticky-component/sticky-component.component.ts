@@ -110,6 +110,8 @@ export class StickyComponentComponent {
       this.onInitSet = true;
 
       $("#"+this._id).css("background-color",this._StickyColor);
+     // $(".sticker2").css("background-color",this._StickyColor);
+      
       console.log(`hi from${this._id} onit `+this._StickyColor);
       
       $(".head").draggable({
@@ -139,6 +141,8 @@ export class StickyComponentComponent {
 
       _elementResizeDetector.listenTo(document.getElementsByClassName('sticker2'), function (element) {
         var width = element.offsetWidth;
+        
+     //   setTimeout( ()=> { element.id = this._id; } ,10);
         var height = element.offsetHeight;
         console.log("Size: " + width + "x" + height + "element id is " );
       })
