@@ -51,7 +51,7 @@ export class StickyComponentComponent {
     private appRef: ApplicationRef,
     private injector: Injector) {
 
-      setTimeout( ()=> {  this.ngOnInit(); } ,0.000000000000000000000000000000000000001);
+    //  setTimeout( ()=> {  this.ngOnInit(); } ,0.000000000000000000000000000000000000001);
    
     this.loadingSpinnerPortal = new ComponentPortal(StickyComponentComponent);
 
@@ -102,7 +102,9 @@ export class StickyComponentComponent {
 
 
   // console.log(`hi from inside commponent `); 
-  ngOnInit() {
+  ngOnInit(){}
+  
+  ngAfterViewInit() {
   /*  this.amin = "red";
     this.PTop = "30px";
     this.PLeft = "40px";*/
@@ -110,7 +112,7 @@ export class StickyComponentComponent {
       this.onInitSet = true;
 
       $("#"+this._id).css("background-color",this._StickyColor);
-      console.log(`hi from${this._id} onit `+this._StickyColor);
+      console.log(`hi from${this._id} onit color is `+this._StickyColor);
       
       $(".head").draggable({
         stop: (event, ui) => {
@@ -125,7 +127,7 @@ export class StickyComponentComponent {
         opacity: 0.5,
         handle: ".spec",
         stack: ".head",
-        distance: 0,
+        distance: 0
         // appentTo :
       });
 
