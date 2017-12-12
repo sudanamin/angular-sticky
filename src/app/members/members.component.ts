@@ -61,7 +61,7 @@ export class MembersComponent {
       stop: (event, ui) => {
       //var StickyColor = $(this.).css("background-color");
        console.log("hi from members mmmmmmmmmmmmmmm"+ this.StickyColor);
-       this.createSticky(this.StickyColor) ;
+      // this.createSticky(this.StickyColor) ;
       },
       revert: true,
       opacity: 0.5,
@@ -69,6 +69,10 @@ export class MembersComponent {
       //    stack: ".head",
       distance: 0,
       // appentTo :
+    });
+
+    $( ".sticker" ).mouseup(() => {
+      this.createSticky(this.StickyColor) ;
     });
 
   }
