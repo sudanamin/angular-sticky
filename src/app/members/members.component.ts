@@ -1,6 +1,6 @@
 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-declare var $: any;
+//declare var $: any;
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -45,7 +45,8 @@ export class MembersComponent {
   setColor(event)
   {
     //this.membercomponent.createSticky();
-    this.StickyColor = event.target.style.backgroundColor;
+    var color = event.target.style.backgroundColor;
+    this.lss.reveal(color) ;
   }
 
   ngOnInit() {
@@ -57,10 +58,11 @@ export class MembersComponent {
    // setTimeout(() => this.lss.hide(), 2000000);
   }
   ngAfterViewInit() {
-    $(".sticker").draggable({
-      stop: (event, ui) => {
+   /* $(".sticker").draggable({
+      start: (event, ui) => {
       //var StickyColor = $(this.).css("background-color");
        console.log("hi from members mmmmmmmmmmmmmmm"+ this.StickyColor);
+       this.createSticky(this.StickyColor) ;
       // this.createSticky(this.StickyColor) ;
       },
       revert: true,
@@ -69,11 +71,11 @@ export class MembersComponent {
       //    stack: ".head",
       distance: 0,
       // appentTo :
-    });
+    });*/
 
-    $( ".sticker" ).mouseup(() => {
-      this.createSticky(this.StickyColor) ;
-    });
+   // $( ".sticker" ).mouseup(() => {
+     
+   // });
 
   }
 }

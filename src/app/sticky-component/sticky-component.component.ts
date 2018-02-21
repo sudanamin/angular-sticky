@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 
 
 import {
@@ -20,11 +20,15 @@ import {
 declare var $: any;
 
 import * as elementResizeDetectorMaker from '.../../element-resize-detector';
+import { ViewEncapsulation } from '@angular/core';
 //import { LoadingStickyService } from '../core/loading-sticky.service';
 @Component({
   selector: 'app-sticky-component',
   templateUrl: './sticky-component.component.html',
-  styleUrls: ['./sticky-component.component.css']
+  styleUrls: ['./sticky-component.component.css'],
+   encapsulation: ViewEncapsulation.None,
+   changeDetection: ChangeDetectionStrategy.OnPush
+  
 })   
  
 
@@ -40,9 +44,11 @@ export class StickyComponentComponent {
   private bodyPortalHost: DomPortalHost;
   _id: string;
   _ref: any;
-  _StickyColor: string;
+ _StickyColorr :string = 'blue';
+ _StickyColor :string = 'blue';
+ 
   amin: string;
-
+  //myStyle : ={'background-color':'blue'}
   PLeft: string;
   PTop: string;
 
@@ -51,7 +57,11 @@ export class StickyComponentComponent {
     private appRef: ApplicationRef,
     private injector: Injector) {
 
-    //  setTimeout( ()=> {  this.ngOnInit(); } ,0.000000000000000000000000000000000000001);
+     // setTimeout( ()=> {  this.ngAfterViewInit(); } ,1);
+
+      console.log(`hi from constructer`);
+     
+      
    
     this.loadingSpinnerPortal = new ComponentPortal(StickyComponentComponent);
 
@@ -108,14 +118,15 @@ export class StickyComponentComponent {
   /*  this.amin = "red";
     this.PTop = "30px";
     this.PLeft = "40px";*/
+    console.log(`hi from${this._id} onit color is `+this._StickyColorr);
     if (!this.onInitSet) {
       this.onInitSet = true;
 
-      $("#"+this._id).css("background-color",this._StickyColor);
-      console.log(`hi from${this._id} onit color is `+this._StickyColor);
+   //   $("#"+this._id).css("background-color",this._StickyColor);
+      console.log(`hi from${this._id} onit color is `+this._StickyColorr);
       
       $(".head").draggable({
-        stop: (event, ui) => {
+        start: (event, ui) => {
 
           //this.sticky = document.createElement("app-sticky-component");
 
@@ -132,7 +143,7 @@ export class StickyComponentComponent {
       });
 
 
-
+      setTimeout( ()=> { /* this.ngOnInit();*/ } ,10);
 
 
       let _elementResizeDetector = elementResizeDetectorMaker({

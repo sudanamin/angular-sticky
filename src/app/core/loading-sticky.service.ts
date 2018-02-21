@@ -50,7 +50,9 @@ export class LoadingStickyService {
     s.instance._ref = s;
     this._sid += 1;
     s.instance._id = this._sid ;
+    
         s.instance._StickyColor = StickyColor;
+        s.instance.ngAfterViewInit();
   }
 
   hide() {
